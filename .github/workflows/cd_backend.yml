@@ -25,4 +25,4 @@ jobs:
                   context: .
                   file: ./Docker/Dockerfile.backend
                   push: true
-                  tags: $${secrets.DOCKER_USERNAME}/week-27-turbo:${{ github.sha }}
+                  tags: ${{ secrets.DOCKER_USERNAME }}/week-27-turbo:${{ github.sha }}
