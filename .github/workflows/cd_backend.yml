@@ -36,5 +36,6 @@ jobs:
                 username: ubuntu
                 key: ${{secrets.SSH_PRIVATE_KEY}}
                 script: |
-                   docker stop user_backend
+                   docker stop user_backend || true
+                   docker rm user_backend || true
                    docker run -d -p 8080:8080 --name user_backend ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-backend:${{ github.sha }}
