@@ -27,4 +27,15 @@ jobs:
                   push: true
                   tags: ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-ws:${{ github.sha }}
                   build-args: |
-                    DATABASE_URL=${{ secrets.DATABASE_URL }}
+                      DATABASE_URL=${{ secrets.DATABASE_URL }}
+
+            - name: Deploy to EC2
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ubuntu
+                  key: ${{secrets.SSH_PRIVATE_KEY}}
+                  script: |
+                      docker stop user_ws || true
+                      docker rm user_ws || true
+                      docker run -d -p 8080:8080 --name user_ws ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-ws:${{ github.sha }}
