@@ -35,4 +35,4 @@ jobs:
                   ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@${{secrets.HOST}} -t 
                   "docker stop user_frontend || true
                    docker rm user_frontend || true
-                    docker run -d -p 8080:8080 --name user_frontend ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-frontend:${{ github.sha }}"
+                    docker run -d -p 3000:3000 --name user_frontend ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-frontend:${{ github.sha }}"
