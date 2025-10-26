@@ -26,3 +26,5 @@ jobs:
                   file: ./Docker/Dockerfile.backend
                   push: true
                   tags: ${{ secrets.DOCKER_USERNAME }}/week-27-turbo:${{ github.sha }}
+                  build-args: |
+                    DATABASE_URL=${{ secrets.DATABASE_URL }}
