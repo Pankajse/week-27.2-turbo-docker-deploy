@@ -33,8 +33,8 @@ jobs:
               uses: appleboy/ssh-action@v1
               with:
                 host: ${{ secrets.HOST }}
+                username: ubuntu
                 key: ${{secrets.SSH_PRIVATE_KEY}}
-                port: ${{ secrets.PORT }}
                 script: |
                    docker stop user_backend
                    docker run -p 8080:8080 --name user_backend ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-backend:${{ github.sha }}
