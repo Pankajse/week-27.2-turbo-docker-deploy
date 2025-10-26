@@ -1,4 +1,4 @@
-name: Deploy Backend
+name: Deploy Websockets Server
 
 on:
     push:
@@ -23,18 +23,8 @@ jobs:
               uses: docker/build-push-action@v4
               with:
                   context: .
-                  file: ./Docker/Dockerfile.backend
+                  file: ./Docker/Dockerfile.ws
                   push: true
-                  tags: ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-backend:${{ github.sha }}
+                  tags: ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-ws:${{ github.sha }}
                   build-args: |
                     DATABASE_URL=${{ secrets.DATABASE_URL }}
-
-            - name: Deploy to EC2
-              uses: appleboy/ssh-action@v1
-              with:
-                host: ${{ secrets.HOST }}
-                key: ${{secrets.SSH_PRIVATE_KEY}}
-                port: ${{ secrets.PORT }}
-                script: |
-                   docker stop user_backend
-                   docker run -p 8080:8080 --name user_backend ${{ secrets.DOCKER_USERNAME }}/week-27-turbo-backend:${{ github.sha }}

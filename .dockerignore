@@ -1,0 +1,28 @@
+# Ignore dependencies
+node_modules
+**/node_modules
+*.log
+
+# Ignore build artifacts
+dist
+build
+.next
+out
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore local files
+.git
+.gitignore
+Dockerfile
+Docker
+docker-compose.yml
+turbo
+.vscode
+.idea
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
